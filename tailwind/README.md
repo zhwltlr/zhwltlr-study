@@ -5,38 +5,9 @@ npm install -D tailwindcss postcss autoprefixer
 npx tailwindcss init
 ```
 
-#### tailwind.config.js
+#### next.js ver.13 study
 
-```
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: ["./src/**/*.{html,js}"],
-  theme: {
-    extend: {},
-  },
-  plugins: [],
-}
-```
-
-#### postcss.config.js
-
-```
-npm install -D postcss-cli postcss
-module.exports = {
-  plugins: {
-    tailwindcss: {},
-    autoprefixer: {},
-  }
-}
-```
-
-#### global.css
-
-```
-global.css
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-```
+- page.tsx, layout.tsx를 활용
+- [id] 폴더로 동적 라우팅 확인
 
 ### npm run dev

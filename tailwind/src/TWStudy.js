@@ -1,14 +1,18 @@
 import "./App.css";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
-function App() {
+function TWStudy() {
   const {
     register,
     handleSubmit,
+    reset,
     watch,
-    formState: { errors },
-  } = useForm();
-  const onSubmit = (data) => console.log(data);
+    setValue,
+    getValues,
+    formState: { errors, isValid },
+  } = useForm({ mode: "onChange" });
+  const onSubmit = () => console.log("Email 양식이 제출되었습니다!");
+  const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 
   return (
     <div className="App">
@@ -41,7 +45,13 @@ function App() {
               <div className="mt-2">
                 <input
                   placeholder="Email"
-                  {...register("email")}
+                  {...register("email", {
+                    required: "*이메일을 입력해주세요.",
+                    pattern: {
+                      value: regex,
+                      message: "*유효한 이메일 형식이 아닙니다.",
+                    },
+                  })}
                   id="email"
                   name="email"
                   type="email"
@@ -49,7 +59,9 @@ function App() {
                 />
               </div>
             </div>
-
+            <div className="h-2 text-xs text-red-500">
+              {errors?.email?.message}
+            </div>
             <div>
               <div className="flex items-center justify-between">
                 <label
@@ -69,7 +81,11 @@ function App() {
               </div>
               <div className="mt-2">
                 <input
-                  {...register("password", { required: true, maxLength: 20 })}
+                  {...register("password", {
+                    required: true,
+                    maxLength: 20,
+                    minLength: 8,
+                  })}
                   placeholder="password"
                   id="password"
                   name="password"
@@ -82,7 +98,8 @@ function App() {
             <div>
               <button
                 type="submit"
-                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:opacity-75 enabled:hover:bg-indigo-500"
+                disabled={!isValid}
               >
                 Sign in
               </button>
@@ -104,4 +121,4 @@ function App() {
   );
 }
 
-export default App;
+export default TWStudy;

@@ -196,3 +196,10 @@ let 장바구니: Cart[] = [
   { product: "청소기", price: 7000 },
   { product: "삼다수", price: 800 },
 ];
+
+interface Cart2 {
+  product: string;
+  price: number;
+  quantity: number;
+  total: number;
+}

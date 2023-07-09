@@ -15,7 +15,6 @@ const RqPost = () => {
 
   // useQeury get
   const { data, isLoading, error } = useRqQueryCustom({
-    path: "/1",
     key: "get",
     reqOptions: { retry: 2 },
   });

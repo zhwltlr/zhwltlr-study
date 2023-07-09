@@ -19,3 +19,4 @@ const getAxios = async (args: IRqQuery) => {
 export const useRqQueryCustom = (args: IRqQuery) => {
   return useQuery([`${args.key}`], () => getAxios(args), args.reqOptions);
 };
+

@@ -1,4 +1,4 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Next-13
 
 ## Getting Started
 
@@ -14,21 +14,19 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Description
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- Next.js version 13에 개편된 내용을 중점적으로 다룸
+- app 디렉토리는 다음에 대한 지원이 포함된다고 한다.
+  - 레이아웃: 상태를 유지하고 비용이 많이 드는 재렌더링을 피하면서 경로 간에 UI를 쉽게 공유한다. 즉, 페이지가 변경되어도 지속적으로 보여질 nav와 같은 컴포넌트는 layout.tsx에서 작성해주면 됨
+  - 스트리밍: 즉시 로드 상태를 표시하고 렌더링되는 UI 단위로 스트리밍
+  - 데이터 가져오기 지원: async 서버 구성 요소 및 fetchAPI를 통해 구성 요소 수준 가져오기가 가능
+  - `app/` 내부에 경로를 생성하려면 `page.tsx`로 file 생성
+    <img src="https://github.com/zhwltlr/zhwltlr-study/assets/100506719/b571e739-6cc7-475b-8365-310a76a62423" />
 
-## Learn More
+<br />
 
-To learn more about Next.js, take a look at the following resources:
+## More
 
+- [블로그 정리 글](https://blog.naver.com/zhwltlr/223114102591)을 참고하세요
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.

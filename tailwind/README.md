@@ -1,13 +1,30 @@
-## tailwind css 사용 튜토리얼
+# Tailwind
+
+## Getting Started
+
+First, install the tailwind
 
 ```
 npm install -D tailwindcss postcss autoprefixer
 npx tailwindcss init
 ```
 
-#### next.js ver.13 study
+And, run the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+```
+
+## Description
 
 - page.tsx, layout.tsx를 활용
 - [id] 폴더로 동적 라우팅 확인
 
-### npm run dev
+## More
+
+- [블로그 정리글1](https://blog.naver.com/zhwltlr/223088662689) - Tailwind css 설치 및 간단 예제
+- [블로그 정리글2](https://blog.naver.com/zhwltlr/223132240108) - React-hook-form (with tailwind.css)

@@ -5,6 +5,7 @@ interface IRqQuery {
   path?: string;
   key?: string;
   reqOptions?: object;
+  offset?: number;
 }
 
 const getAxios = async (args: IRqQuery) => {
@@ -19,4 +20,3 @@ const getAxios = async (args: IRqQuery) => {
 export const useRqQueryCustom = (args: IRqQuery) => {
   return useQuery([`${args.key}`], () => getAxios(args), args.reqOptions);
 };
-

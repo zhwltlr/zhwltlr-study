@@ -2,6 +2,15 @@
 import { useRqMutateCustom } from "@/hooks/useRQMutateCustom";
 import { useRqQueryCustom } from "@/hooks/useRQQueryCustom";
 import React, { useEffect, useState } from "react";
+import {
+  Container,
+  List,
+  ListItem,
+  ListItemText,
+  Pagination,
+  Typography,
+} from "@mui/material";
+import { useRouter } from "next/navigation";
 
 interface IPosts {
   title: string;
@@ -13,11 +22,24 @@ const RqPost = () => {
   const [posts, setPost] = useState([]);
   const [inputValue, setInputValue] = useState({ title: "", body: "" });
 
+  const router = useRouter();
+
+  // pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const postsPerPage = 100;
+  const handlePageChange = (
+    event: React.ChangeEvent<unknown>,
+    page: number
+  ) => {
+    setCurrentPage(page);
+  };
   // useQeury get
   const { data, isLoading, error } = useRqQueryCustom({
     key: "get",
     reqOptions: { retry: 2 },
+    // offset: (currentPage - 1) * postsPerPage,
   });
+
   // useMutate post
   const { mutate } = useRqMutateCustom();
 
@@ -83,20 +105,56 @@ const RqPost = () => {
           submit
         </button>
       </div>
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : error ? (
-        <p>An error occurred: {error.message}</p>
-      ) : (
-        <ul className="space-y-4">
-          {posts?.map((post: IPosts) => (
-            <li key={post.id} className="border rounded p-4 shadow-sm">
-              <h3 className="text-lg font-bold">{post.title}</h3>
-              <p>{post.body}</p>
-            </li>
+
+      <Container style={{ padding: 0 }}>
+        <List>
+          {posts?.map((post: IPosts, index) => (
+            <ListItem
+              key={index}
+              onClick={() => router.push(`/rqposts/${post.id}`)} // 상세 페이지로 이동
+              sx={{ borderBottom: "1px solid #ddd", cursor: "pointer" }}
+            >
+              <ListItemText
+                primary={
+                  <Typography
+                    variant="body1"
+                    color="white"
+                    sx={{
+                      whiteSpace: "nowrap",
+                      fontSize: "24px",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    {post.title}
+                  </Typography>
+                }
+                sx={{ whiteSpace: "pre-wrap" }} // 내용 줄바꿈 처리
+                secondary={
+                  <Typography
+                    variant="body2"
+                    color="#ddd"
+                    sx={{ whiteSpace: "pre-wrap" }}
+                  >
+                    Content: {post.body}
+                  </Typography>
+                }
+              />
+            </ListItem>
           ))}
-        </ul>
-      )}
+        </List>
+      </Container>
+      <div className="my-4">
+        <Pagination
+          count={Math.ceil(posts.length / postsPerPage)}
+          page={currentPage}
+          onChange={handlePageChange}
+          color="primary"
+          showFirstButton
+          showLastButton
+        />
+      </div>
     </div>
   );
 };

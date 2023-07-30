@@ -21,8 +21,12 @@ pnpm dev
 
 ## Description
 
+#### 1. Tailwind
+
 - page.tsx, layout.tsx를 활용
 - [id] 폴더로 동적 라우팅 확인
+
+#### 2. React-hokk-form
 
 ## More
 

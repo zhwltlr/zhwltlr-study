@@ -28,6 +28,8 @@ pnpm dev
 
 #### 2. React-hokk-form
 
+- React-hook-form을 이용하여 간단한 로그인 페이지 구현
+
 ## More
 
 - [블로그 정리글1](https://blog.naver.com/zhwltlr/223088662689) - Tailwind css 설치 및 간단 예제

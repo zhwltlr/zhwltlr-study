@@ -9,3 +9,5 @@
 - https://blog.naver.com/zhwltlr/223176154042
 
 ### 3. 타입 변환과 단축 평가
+
+- https://blog.naver.com/zhwltlr/223182821085

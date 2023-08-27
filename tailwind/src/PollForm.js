@@ -1,16 +1,19 @@
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import "tailwindcss/tailwind.css";
 
 const PollForm = () => {
+  const navigate = useNavigate();
   const { handleSubmit, control } = useForm();
 
   const onSubmit = (data) => {
     console.log(data); // 폼 데이터를 처리하는 로직을 추가하세요.
+    navigate("/");
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-[#C7D3D4]">
+    <div className="flex justify-center items-center min-h-screen bg-[#C7D3D4] py-12">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="bg-[#FEFEFE] shadow-lg rounded w-2/5 p-8 px-12"
@@ -42,6 +45,7 @@ const PollForm = () => {
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   type="text"
                   {...field}
+                  placeholder="example@flunti.com"
                 />
                 {fieldState.error && (
                   <p className="text-red-500 text-xs italic">
@@ -67,6 +71,7 @@ const PollForm = () => {
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   type="text"
                   {...field}
+                  placeholder="20230901"
                 />
                 {fieldState.error && (
                   <p className="text-red-500 text-xs italic">
@@ -92,6 +97,7 @@ const PollForm = () => {
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   type="text"
                   {...field}
+                  placeholder="홍길동"
                 />
                 {fieldState.error && (
                   <p className="text-red-500 text-xs italic">
@@ -110,13 +116,20 @@ const PollForm = () => {
           <Controller
             name="phoneNumber"
             control={control}
-            rules={{ required: "전화번호는 필수 입력 사항입니다." }}
+            rules={{
+              required: "전화번호는 필수 입력 사항입니다.",
+              pattern: {
+                value: /^[0-9]*$/,
+                message: "숫자만 입력 가능합니다.",
+              },
+            }}
             render={({ field, fieldState }) => (
               <>
                 <input
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  type="text"
+                  type="number"
                   {...field}
+                  placeholder="01012345678"
                 />
                 {fieldState.error && (
                   <p className="text-red-500 text-xs italic">
@@ -140,7 +153,7 @@ const PollForm = () => {
                 <label className="mr-4">
                   <input
                     className="mr-1"
-                    type="checkbox"
+                    type="radio"
                     value="verySatisfied"
                     {...field}
                   />
@@ -149,7 +162,7 @@ const PollForm = () => {
                 <label className="mr-4">
                   <input
                     className="mr-1"
-                    type="checkbox"
+                    type="radio"
                     value="satisfied"
                     {...field}
                   />
@@ -158,7 +171,7 @@ const PollForm = () => {
                 <label>
                   <input
                     className="mr-1"
-                    type="checkbox"
+                    type="radio"
                     value="neutral"
                     {...field}
                   />

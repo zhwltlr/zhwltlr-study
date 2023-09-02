@@ -5,15 +5,27 @@ const port = 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-let posts = [];
-let notes = require("./posts");
+let posts = require("./posts");
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
 });
 
+function generatePostListHTML(posts) {
+  // <small>작성 시간: ${post.time}</small>
+  let html = "";
+  posts.forEach((post) => {
+    html += `<li class="list-group-item">
+      <h4 style="padding:10px 0 0">${post.title}</h4>
+      <p>${post.content}</p>
+    </li>`;
+  });
+  return html;
+}
+
 app.get("/api/posts", (req, res) => {
-  res.json(notes);
+  const postListHTML = generatePostListHTML(posts);
+  res.send(postListHTML);
 });
 
 app.post("/api/posts", (req, res) => {
@@ -22,7 +34,7 @@ app.post("/api/posts", (req, res) => {
     title: req.body.title,
     content: req.body.content,
   };
-  notes.push(newPost);
+  posts.push(newPost);
   res.status(201).json(newPost);
 });
 

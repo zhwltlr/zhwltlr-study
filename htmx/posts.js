@@ -1,27 +1,24 @@
 module.exports = [
   {
     id: 1,
-    title: "Meeting Notes",
-    content: "This is an example note. It contains **Markdown**!",
+    title: "Lorem Ipsum",
+    content:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book",
   },
   {
     id: 2,
-    title: "Make a thing",
-    content: `It's very easy to make some words **bold** and other words *italic* with
-  Markdown. You can even [link to htmx's website!](https://htmx.org).`,
+    title: "what is this?",
+    content: `this is example code with htmx + express.js`,
   },
   {
     id: 3,
-    title:
-      "A note with a very long title because sometimes you need more words",
-    content: `You can write all kinds of [amazing](https://en.wikipedia.org/wiki/The_Amazing)
-  notes in this app! These note live on the server in the \`notes\` folder.
-  
-  ![This app is powered by htmx](images/htmx-logo.png)`,
+    title: "htmx in a Nutshell",
+    content:
+      "htmx is a library that allows you to access modern browser features directly from HTML, rather than using javascript.",
   },
   {
     id: 4,
-    title: "I wrote this note today",
-    content: "It was an excellent note",
+    title: "잘하고 있는지 모르겠네요",
+    content: "이렇게 쓰는게 맞겠죠?",
   },
 ];

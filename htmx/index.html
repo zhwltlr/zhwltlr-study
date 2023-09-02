@@ -18,15 +18,22 @@
     <script src="https://unpkg.com/htmx.org@1.9.5"></script>
   </head>
 
-  <body>
+  <body
+    class="d-flex flex-column min-vh-100 justify-content-center align-items-center"
+  >
     <div class="container mt-4">
-      <h1>질문 게시판</h1>
-      <div class="col-md-6">
-        <h2>게시물 목록</h2>
-        <ul id="postList" hx-get="/api/posts" hx-trigger="load"></ul>
+      <h1 style="color: navy; font-weight: 700">질문 게시판</h1>
+      <div class="col-md-12" style="margin-bottom: 40px">
+        <h3 style="margin: 30px 0 20px">게시물 목록</h3>
+        <ul
+          class="list-group"
+          id="postList"
+          hx-get="/api/posts"
+          hx-trigger="load"
+        ></ul>
       </div>
-      <div class="col-md-6">
-        <h2>게시물 추가</h2>
+      <div class="col-md-12 mt-3">
+        <h3>게시물 추가</h3>
         <form id="postForm" hx-post="/api/posts">
           <div class="mb-3">
             <label for="title" class="form-label">제목:</label>
@@ -60,22 +67,5 @@
         </form>
       </div>
     </div>
-
-    <script>
-      document.addEventListener("htmx:afterOnLoad", function (event) {
-        if (event.detail.xhr.path === "/api/posts") {
-          const responseData = JSON.parse(event.detail.xhr.response);
-          console.log(responseData);
-          const postList = document.getElementById("postList");
-          postList.innerHTML = ""; // 목록 초기화
-
-          responseData.forEach((post) => {
-            const listItem = document.createElement("li");
-            listItem.textContent = `${post.title}: ${post.content}`;
-            postList.appendChild(listItem);
-          });
-        }
-      });
-    </script>
   </body>
 </html>

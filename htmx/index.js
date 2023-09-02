@@ -6,13 +6,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 let posts = [];
+let notes = require("./posts");
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
 });
 
 app.get("/api/posts", (req, res) => {
-  res.json(posts);
+  res.json(notes);
 });
 
 app.post("/api/posts", (req, res) => {
@@ -21,7 +22,7 @@ app.post("/api/posts", (req, res) => {
     title: req.body.title,
     content: req.body.content,
   };
-  posts.push(newPost);
+  notes.push(newPost);
   res.status(201).json(newPost);
 });
 

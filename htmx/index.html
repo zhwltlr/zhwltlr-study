@@ -4,85 +4,78 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>질문 게시판</title>
-
-    <!-- Bootstrap CSS를 추가합니다. -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
       crossorigin="anonymous"
     />
-  </head>
-  <body>
-    <div class="container mt-4">
-      <h1>질문 게시판</h1>
-      <div class="row">
-        <div class="col-md-6">
-          <h2>게시물 목록</h2>
-          <ul class="list-group" id="postList">
-            <!-- 게시물 목록이 여기에 나타납니다. -->
-          </ul>
-        </div>
-        <div class="col-md-6">
-          <h2>게시물 추가</h2>
-          <form id="postForm">
-            <div class="mb-3">
-              <label for="title" class="form-label">제목:</label>
-              <input
-                type="text"
-                class="form-control"
-                id="title"
-                name="title"
-                required
-              />
-            </div>
-            <div class="mb-3">
-              <label for="content" class="form-label">내용:</label>
-              <textarea
-                class="form-control"
-                id="content"
-                name="content"
-                required
-              ></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">게시물 추가</button>
-          </form>
-        </div>
-      </div>
-    </div>
-
-    <!-- Bootstrap JavaScript 및 htmx를 포함한 스크립트 추가 -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
       crossorigin="anonymous"
     ></script>
     <script src="https://unpkg.com/htmx.org@1.9.5"></script>
+  </head>
+
+  <body>
+    <div class="container mt-4">
+      <h1>질문 게시판</h1>
+      <div class="col-md-6">
+        <h2>게시물 목록</h2>
+        <ul id="postList" hx-get="/api/posts" hx-trigger="load"></ul>
+      </div>
+      <div class="col-md-6">
+        <h2>게시물 추가</h2>
+        <form id="postForm" hx-post="/api/posts">
+          <div class="mb-3">
+            <label for="title" class="form-label">제목:</label>
+            <input
+              type="text"
+              id="title"
+              name="title"
+              class="form-control"
+              hx-trigger="change"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="content" class="form-label">내용:</label>
+            <textarea
+              id="content"
+              name="content"
+              class="form-control"
+              hx-trigger="change"
+              required
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            hx-swap="outerHTML"
+            hx-target="#postForm"
+            class="btn btn-primary"
+          >
+            게시물 추가
+          </button>
+        </form>
+      </div>
+    </div>
 
     <script>
-      // 게시물 목록을 불러오는 함수
-      function loadPosts() {
-        htmx.ajax("/api/posts", "postList");
-      }
+      document.addEventListener("htmx:afterOnLoad", function (event) {
+        if (event.detail.xhr.path === "/api/posts") {
+          const responseData = JSON.parse(event.detail.xhr.response);
+          console.log(responseData);
+          const postList = document.getElementById("postList");
+          postList.innerHTML = ""; // 목록 초기화
 
-      // 폼을 제출하는 함수
-      function submitForm() {
-        htmx.ajax("POST", "/api/posts", "postForm");
-        loadPosts();
-      }
-
-      // 페이지가 로드될 때 게시물 목록을 불러옴
-      window.addEventListener("load", loadPosts);
-
-      // 게시물 추가 폼을 제출할 때 submitForm 함수 호출
-      document
-        .getElementById("postForm")
-        .addEventListener("htmx:configRequest", (event) => {
-          event.detail.parameters.push({
-            name: "htmx-arg",
-            value: "submitForm",
+          responseData.forEach((post) => {
+            const listItem = document.createElement("li");
+            listItem.textContent = `${post.title}: ${post.content}`;
+            postList.appendChild(listItem);
           });
-        });
+        }
+      });
     </script>
   </body>
 </html>

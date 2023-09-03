@@ -31,6 +31,106 @@
           hx-get="/api/posts"
           hx-trigger="load"
         ></ul>
+
+        <!-- 게시물 수정 및 삭제 모달 폼 -->
+        <div
+          class="modal fade"
+          id="editPostModal"
+          tabindex="-1"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <form
+                id="editPostForm"
+                hx-post="/api/posts/:id"
+                hx-trigger="submit"
+              >
+                <div class="modal-header">
+                  <h5 class="modal-title">게시물 수정</h5>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body">
+                  <div class="mb-3">
+                    <label for="editTitle" class="form-label">제목:</label>
+                    <input
+                      type="text"
+                      id="editTitle"
+                      name="title"
+                      class="form-control"
+                      required
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="editContent" class="form-label">내용:</label>
+                    <textarea
+                      id="editContent"
+                      name="content"
+                      class="form-control"
+                      required
+                    ></textarea>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    닫기
+                  </button>
+                  <button type="submit" class="btn btn-primary">저장</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- 게시물 삭제 모달 폼 -->
+        <div
+          class="modal fade"
+          id="deletePostModal"
+          tabindex="-1"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <form
+                id="deletePostForm"
+                hx-delete="/api/posts/:id"
+                hx-trigger="submit"
+              >
+                <div class="modal-header">
+                  <h5 class="modal-title">게시물 삭제</h5>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body">
+                  <p>게시물을 삭제하시겠습니까?</p>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    취소
+                  </button>
+                  <button type="submit" class="btn btn-danger">삭제</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="col-md-12 mt-3">
         <h3>게시물 추가</h3>
@@ -67,5 +167,71 @@
         </form>
       </div>
     </div>
+    <script>
+      // 게시물 목록을 업데이트하는 함수
+      function updatePostList() {
+        htmx.trigger("#postList", "hx-get");
+      }
+
+      // 수정 버튼 클릭 시 게시물 정보를 수정하는 모달 폼 열기
+      function openEditModal(id) {
+        const post = posts.find((post) => post.id === id);
+        document.getElementById("editTitle").value = post.title;
+        document.getElementById("editContent").value = post.content;
+        document.getElementById("editPostForm").setAttribute("hx-arg", id);
+        $("#editPostModal").modal("show");
+      }
+
+      // 삭제 버튼 클릭 시 게시물 삭제 확인 모달 폼 열기
+      function openDeleteModal(id) {
+        document.getElementById("deletePostForm").setAttribute("hx-arg", id);
+        $("#deletePostModal").modal("show");
+      }
+
+      // 페이지 로드 시 게시물 목록 업데이트
+      window.addEventListener("load", updatePostList);
+
+      // 게시물 목록을 업데이트하는 이벤트 핸들러
+      document.body.addEventListener("htmx:afterSwap", function () {
+        const postList = document.getElementById("postList");
+        const posts = JSON.parse(postList.getAttribute("hx-indicator"));
+
+        // 수정 버튼과 삭제 버튼에 이벤트 리스너 추가
+        posts?.forEach((post) => {
+          const editButton = document.createElement("button");
+          editButton.classList.add("btn", "btn-primary", "btn-sm", "me-2");
+          editButton.innerText = "수정";
+          editButton.addEventListener("click", () => openEditModal(post.id));
+
+          const deleteButton = document.createElement("button");
+          deleteButton.classList.add("btn", "btn-danger", "btn-sm");
+          deleteButton.innerText = "삭제";
+          deleteButton.addEventListener("click", () =>
+            openDeleteModal(post.id)
+          );
+
+          const listItem = document.createElement("li");
+          listItem.classList.add("list-group-item");
+          listItem.innerHTML = `
+            <h4 style="padding:10px 0 0">${post.title}</h4>
+            <p>${post.content}</p>
+          `;
+          listItem.appendChild(editButton);
+          listItem.appendChild(deleteButton);
+
+          postList.appendChild(listItem);
+        });
+      });
+
+      // // 게시물 수정 후 모달 닫기
+      // document.body.addEventListener("htmx:afterRequest", function () {
+      //   $("#editPostModal").modal("hide");
+      // });
+
+      // // 게시물 삭제 후 모달 닫기
+      // document.body.addEventListener("htmx:afterRequest", function () {
+      //   $("#deletePostModal").modal("hide");
+      // });
+    </script>
   </body>
 </html>

@@ -39,135 +39,102 @@
 
   <body>
     <div class="container">
-      <h1 style="color: navy; font-weight: 700">질문 게시판</h1>
-      <div class="col-md-12" style="margin-bottom: 40px">
-        <h3 style="margin: 30px 0 20px">게시물 목록</h3>
-        <ul
-          class="list-group"
-          id="postList"
-          hx-get="/api/posts"
-          hx-trigger="load"
-        ></ul>
-      </div>
-      <div class="col-md-12 mt-3">
-        <h3>게시물 추가</h3>
-        <form
-          id="postForm"
-          hx-post="/api/posts"
-          hx-swap="innerHTML"
-          hx-target="#postList"
+      <div style="margin-top: 80px">
+        <h1
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          "
         >
-          <div class="mb-3">
-            <label for="title" class="form-label">제목:</label>
+          Contacts
+          <button class="btn btn-light" onclick="movepage()">EX2</button>
+        </h1>
+        <table class="table delete-row-example">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="contactList" hx-get="/contact" hx-trigger="load"></tbody>
+        </table>
+        <div>
+          <form
+            id="contactForm"
+            hx-post="/contact"
+            style="
+              display: flex;
+              justify-content: flex-start;
+              align-items: center;
+            "
+            hx-swap="innerHTML"
+            hx-target="#contactList"
+          >
+            <label for="title" class="form-label">이름:</label>
             <input
+              style="width: 40%; margin-left: 10px"
               type="text"
-              id="title"
-              name="title"
+              id="name"
+              name="name"
               class="form-control"
               hx-trigger="change"
               required
             />
-          </div>
-          <div class="mb-3">
-            <label for="content" class="form-label">내용:</label>
-            <textarea
-              id="content"
-              name="content"
+
+            <label for="content" class="form-label" style="margin-left: 10px"
+              >이메일:</label
+            >
+            <input
+              style="width: 40%; margin-left: 10px"
+              id="email"
+              name="email"
               class="form-control"
               hx-trigger="change"
               required
-            ></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary">게시물 추가</button>
-        </form>
+            />
+
+            <button
+              style="margin-left: 10px; margin-bottom: 0"
+              type="submit"
+              class="btn btn-primary"
+            >
+              추가
+            </button>
+          </form>
+        </div>
+        <!-- test2 -->
+        <div style="margin-top: 50px">
+          <h3>Search Contacts</h3>
+          <input
+            class="form-control"
+            type="search"
+            name="search"
+            placeholder="Begin Typing To Search Users..."
+            hx-post="/search"
+            hx-trigger="keyup changed delay:500ms, search"
+            hx-target="#search-results"
+            hx-swap="innerHTML"
+          />
+          <table class="table" style="margin-top: 10px">
+            <thead>
+              <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+              </tr>
+            </thead>
+            <tbody id="search-results"></tbody>
+          </table>
+        </div>
       </div>
     </div>
 
-    <!-- test -->
-    <div class="container" style="margin-top: 80px">
-      <table class="table delete-row-example">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody id="contactList" hx-get="/contact" hx-trigger="load"></tbody>
-      </table>
-      <div>
-        <form
-          id="contactForm"
-          hx-post="/contact"
-          style="
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-          "
-          hx-swap="innerHTML"
-          hx-target="#contactList"
-        >
-          <label for="title" class="form-label">이름:</label>
-          <input
-            style="width: 40%; margin-left: 10px"
-            type="text"
-            id="name"
-            name="name"
-            class="form-control"
-            hx-trigger="change"
-            required
-          />
-
-          <label for="content" class="form-label" style="margin-left: 10px"
-            >이메일:</label
-          >
-          <input
-            style="width: 40%; margin-left: 10px"
-            id="email"
-            name="email"
-            class="form-control"
-            hx-trigger="change"
-            required
-          />
-
-          <button
-            style="margin-left: 10px; margin-bottom: 0"
-            type="submit"
-            class="btn btn-primary"
-          >
-            추가
-          </button>
-        </form>
-      </div>
-      <!-- test2 -->
-      <div style="margin-top: 50px">
-        <h3>
-          Search Contacts
-          <!-- <span class="htmx-indicator">
-                    <img src="/img/bars.svg" /> Searching...
-                </span> -->
-        </h3>
-        <input
-          class="form-control"
-          type="search"
-          name="search"
-          placeholder="Begin Typing To Search Users..."
-          hx-post="/search"
-          hx-trigger="keyup changed delay:500ms, search"
-          hx-target="#search-results"
-          hx-swap="innerHTML"
-        />
-        <table class="table">
-          <thead>
-            <tr>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Email</th>
-            </tr>
-          </thead>
-          <tbody id="search-results"></tbody>
-        </table>
-      </div>
-    </div>
+    <script>
+      const movepage = () => {
+        location.href = "/qna";
+      };
+    </script>
   </body>
 </html>

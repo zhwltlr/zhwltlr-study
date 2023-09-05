@@ -12,6 +12,10 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
 });
 
+app.get("/qna", (req, res) => {
+  res.sendFile(__dirname + "/qna.html");
+});
+
 function generatePostListHTML(posts) {
   let html = "";
   posts.forEach((post) => {

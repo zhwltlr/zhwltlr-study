@@ -11,3 +11,7 @@
 ### 3. 타입 변환과 단축 평가
 
 - https://blog.naver.com/zhwltlr/223182821085
+
+### 4. 함수
+
+- https://blog.naver.com/zhwltlr/223201191312

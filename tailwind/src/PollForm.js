@@ -8,7 +8,7 @@ const PollForm = () => {
   const { handleSubmit, control } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data); // 폼 데이터를 처리하는 로직을 추가하세요.
+    console.log(data);
     navigate("/");
   };
 

@@ -12,6 +12,11 @@ htmx란?
 
 - 클라이언트-서버 상호작용: htmx는 Ajax 요청을 사용하여 페이지 갱신을 최소화하면서 서버와 상호작용한다 이 말인 즉, 웹 페이지는 부분적으로 업데이트되고 필요한 데이터만 가져올 수 있다는 것이다.
 
+## Example
+
+- CRUD with board
+- CRUD with contacts & search contacts
+
 <br />
 더 자세한 건 <b><a href="https://blog.naver.com/zhwltlr/223194969767">블로그 정리</a></b>를 참고하세요
 

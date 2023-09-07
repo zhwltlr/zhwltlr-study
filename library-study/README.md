@@ -16,10 +16,38 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Description
 
-- Next.js의 API Routes
+#### Next.js의 API Routes
+
+1. 서버리스 함수
+
+Next.js의 API Routes는 서버리스(Serverless) 기반의 함수로 동작한다. 이는 서버 코드를 작성하지 않아도 API 엔드포인트를 생성하고 관리할 수 있다는 것을 의미한다.
+
+```
+// pages/api/hello.js
+export default function handler(req, res) {
+res.status(200).json({ message: "Hello from the serverless API!" });
+}
+```
+
+2. 자동 라우팅
+
+프로젝트의 `pages/api` 디렉토리 내에 생성한 파일들은 Next가 아~ api 부분이구나 인식하여 별다른 장치 없이도 자동으로 API 엔드포인트로 라우팅된다. 즉, 파일 구조를 통해 URL 경로가 생성되므로 별도의 라우팅 설정이 필요하지 않다는 소리다.
+
+3. 클라이언트 및 서버에서 사용 가능
+
+API Routes는 서버 사이드와 클라이언트 사이드에서 모두 사용 가능하기 대문에 이를 통해 데이터를 사전 렌더링하여 성능을 향상시킬 수 있게 된다.
+
+<br />
+
+#### React split-pane-react
+
+split-pane-react는 React에서 분할된 레이아웃을 만들기 위한 유용한 라이브러리(라고 소개하고 있음)다. 이 라이브러리를 사용하면 화면을 분할하고 여러 개의 패널로 구성할 수 있어 복잡한 레이아웃을 간편하게 구현할 수 있다(고 소개하고 있음).
+
+간단히 말해 split-pane-react는 화면을 수평 또는 수직으로 분할하여 패널을 생성하고, 각 패널에 내용을 배치할 수 있게 해주는 역할을 한다.
 
 <br />
 
 ## More
 
-- [블로그 정리 글](https://blog.naver.com/zhwltlr/223188491322)을 참고하세요.
+- [블로그 정리 글](https://blog.naver.com/zhwltlr/223170222235) - React split-pane-react
+- [블로그 정리 글](https://blog.naver.com/zhwltlr/223188491322) - Next.js의 API Routes

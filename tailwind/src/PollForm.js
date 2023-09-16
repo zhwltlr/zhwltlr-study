@@ -18,13 +18,7 @@ const PollForm = () => {
         onSubmit={handleSubmit(onSubmit)}
         className="bg-[#FEFEFE] shadow-lg rounded w-2/5 p-8 px-12"
       >
-        <div className="flex align-center justify-center mt-6 mb-10">
-          <img
-            src="./assets/flunti_typo_blue-svg.svg"
-            alt="logo"
-            className="h-12"
-          />
-        </div>
+        <div className="flex align-center justify-center mt-6 mb-10"></div>
         <div className="mb-6">
           <label className="block text-gray-700 text-sm font-bold mb-2">
             이메일

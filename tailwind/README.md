@@ -29,6 +29,7 @@ pnpm dev
 #### 2. React-hokk-form
 
 - React-hook-form을 이용하여 간단한 로그인 페이지 구현
+- 유효성 검증 포함
 
 ## More
 

@@ -35,3 +35,4 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - [블로그 정리 글](https://blog.naver.com/zhwltlr/223114102591)을 참고하세요
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [블로그 정리 글](https://blog.naver.com/zhwltlr/223231504372) - What is Next-Auth
+- [블로그 정리 글](https://blog.naver.com/zhwltlr/223236593765) - Next-Auth with jwt token

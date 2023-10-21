@@ -11,6 +11,10 @@
   "dependencies": {
     "@nextui-org/react": "^2.1.13",
     "@nextui-org/table": "^2.0.23",
+    "@tiptap/extension-image": "^2.1.12",
+    "@tiptap/pm": "^2.1.12",
+    "@tiptap/react": "^2.1.12",
+    "@tiptap/starter-kit": "^2.1.12",
     "@types/node": "20.5.0",
     "@types/react": "18.2.20",
     "@types/react-dom": "18.2.7",

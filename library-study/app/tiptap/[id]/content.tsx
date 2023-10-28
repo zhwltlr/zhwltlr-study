@@ -78,7 +78,7 @@ const Content = ({ post }: any) => {
       <form onSubmit={handleSubmit}>
         {/* ARTICLE */}
         <Article
-          contentError={contentError}
+          contentError={contentError} 
           editor={editor}
           isEditable={isEditable}
           setContent={setContent}

@@ -13,7 +13,7 @@ const Post = ({ params }: Props) => {
   const [post, setPost] = useState([]);
 
   const getPost = async () => {
-    fetch("https://jsonplaceholder.typicode.com/posts/1")
+    fetch("https://jsonplaceholder.typicode.com/posts/2")
       .then((response) => response.json())
       .then((json) => setPost(json));
   };

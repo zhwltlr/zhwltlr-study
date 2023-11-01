@@ -93,6 +93,6 @@ const [sizes, setSizes] = useState([30, 70]);
 
 - [블로그 정리 글](https://blog.naver.com/zhwltlr/223170222235) - React split-pane-react
 - [블로그 정리 글](https://blog.naver.com/zhwltlr/223188491322) - Next.js의 API Routes
-- 블로그 정리 글
+- [블로그 정리 글](https://blog.naver.com/zhwltlr/223249057457) - Next.js WYSIWYG (1) - Quill
 
 <br/>

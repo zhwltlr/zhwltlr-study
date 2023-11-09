@@ -85,6 +85,8 @@ const [sizes, setSizes] = useState([30, 70]);
 
 <br />
 
+### shadcn/ui
+
 ### Tiptap
 
 ### Quill

@@ -89,7 +89,15 @@ const [sizes, setSizes] = useState([30, 70]);
 
 ### Tiptap
 
+- Tiptap은 ProseMirror를 기반으로 하는 WYSIWYG(What You See Is What You Get) 에디터를 쉽게 구현할 수 있게 해주는 라이브러리로, 여기서 말하는 ProseMirror는 풍부한 텍스트 에디팅을 제공하는 프레임워크이다.Tiptap은 ProseMirror를 Vue.js와 React와 같은 프레임워크에 통합하기 위한 래퍼이다.
+
+- 특징
+  - Tiptap은 모듈화된 아키텍처를 기반으로 함
+  - 각각의 기능은 확장(extension)으로 나누어져 있으며, 필요한 기능을 선택 가능
+
 ### Quill
+
+- Quill은 tiptap과 마찬가지로 rich text editor의 일종이다. 그리고 이를 리액트 혹은 넥스트 환경에서 통합할 수 있게 react-quill이라는 이름으로 라이브러리가 존재한다. 글꼴, 크기, 스타일링, 목록, 링크, 이미지 삽입 등 다양한 기능을 지원한다.
 
 ## More
 

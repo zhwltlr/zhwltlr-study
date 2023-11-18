@@ -28,6 +28,20 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 #### 2. Next Auth
 
+- 처음부터 Next.js와 Serverless를 지원하도록 설계되었고, 모든 OAuth 서비스와 작동하도록 설계되었으며 OAuth 1.0, 1.0A, 2.0 및 OpenID Connect를 지원한다. 로그인 버튼, 로그아웃 버튼 등과 같은 UI 컴포넌트를 제공하여 프로젝트에서 사용하기 쉽도록 도와준다.
+- 유연성: 많은 인기 있는 로그인 서비스에 대한 내장 지원이 있다. 즉, 이메일/비밀번호, Google, Facebook, GitHub, Twitter, Auth0 등 다양한 옵션을 설정하여 사용할 수 있다.
+
+  ```
+  import GitHubProvider from "next-auth/providers/github";
+  ...
+  providers: [
+    GitHubProvider({
+      clientId: process.env.GITHUB_ID,
+      clientSecret: process.env.GITHUB_SECRET
+    })
+  ]
+  ```
+
 <br />
 
 ## More

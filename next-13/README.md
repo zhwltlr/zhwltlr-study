@@ -42,6 +42,24 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
   ]
   ```
 
+- 데이터 관리 : NextAuth.js는 데이터베이스를 사용하거나 사용하지 않고 사용할 수 있다. Bring Your Own Database (BYOD)를 지원하며 모든 데이터베이스와 함께 사용할 수 있다. 인기 있는 호스팅 제공 업체의 데이터베이스와도 잘 작동한다.
+
+- 안전성: 무암호 로그인 메커니즘 사용을 권장하여,기본적으로 안전하게 설계되었다. Next-Auth는 기본적으로 세션을 사용하여 사용자를 인증하고 세션을 유지한다. 세션 정보는 쿠키를 통해 저장되며, 사용자가 로그인 상태를 유지하는 동안 쉽게 접근할 수 있다.
+  ```
+  import { getSession } from "next-auth/client"
+  export default async (req, res) => {
+    const session = await getSession({ req })
+    if (session) {
+      // Signed in
+      console.log("Session", JSON.stringify(session, null, 2))
+    } else {
+      // Not Signed in
+      res.status(401)
+    }
+    res.end()
+  }
+  ```
+
 <br />
 
 ## More

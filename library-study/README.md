@@ -99,6 +99,10 @@ const [sizes, setSizes] = useState([30, 70]);
 
 - Quill은 tiptap과 마찬가지로 rich text editor의 일종이다. 그리고 이를 리액트 혹은 넥스트 환경에서 통합할 수 있게 react-quill이라는 이름으로 라이브러리가 존재한다. 글꼴, 크기, 스타일링, 목록, 링크, 이미지 삽입 등 다양한 기능을 지원한다.
 
+### xlsx
+
+- excel 파일을 import 혹은 export 하는 라이브러리
+
 ## More
 
 - [블로그 정리 글](https://blog.naver.com/zhwltlr/223170222235) - React split-pane-react

@@ -30,6 +30,27 @@ pnpm dev
 
 - React-hook-form을 이용하여 간단한 로그인 페이지 구현
 - 유효성 검증 포함
+- useFieldArray : 동적으로 생성되는 form 작업을 위한 custom hook
+
+  ```
+      function FieldArray() {
+  const { control, register } = useForm();
+  const { fields, append, prepend, remove, swap, move, insert } = useFieldArray({
+      control, // control props comes from useForm (optional: if you are using FormContext)
+      name: "test", // unique name for your Field Array
+  });
+
+
+  return (
+      {fields.map((field, index) => (
+      <input
+          key={field.id} // important to include key with field's id
+          {...register(`test.${index}.value`)}
+      />
+      ))}
+  );
+  }
+  ```
 
 ## More
 

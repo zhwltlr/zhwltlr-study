@@ -102,6 +102,35 @@ const [sizes, setSizes] = useState([30, 70]);
 ### xlsx
 
 - excel 파일을 import 혹은 export 하는 라이브러리
+  fetch is a low-level API for downloading data from an endpoint. It separates the network step from the response parsing step.
+
+  - Network Step
+    fetch(url) returns a Promise representing the network request. The browser will attempt to download data from the URL. If the network request succeeded, the Promise will "return" with a Response object.
+    ```
+    const response = await fetch(url);
+    ```
+  - Checking Status Code
+    If the file is not available, the fetch will still succeed.
+    The status code, stored in the status property of the Response object, is a standard HTTP status code number. Code should check the result.
+    Typically servers will return status 404 "File not Found" if the file is not available. A successful request should have status 200 "OK".
+  - Extracting Data
+    Response#json will try to parse the data using JSON.parse. Like fetch, the json method returns a Promise that must be await-ed:
+
+    ```
+    const raw_data = await response.json();
+    ```
+
+```
+  export async function extractChpaterSectionData(sheet: any, lectureId: number) {
+  const data: any[] = XLSX.utils.sheet_to_json(sheet, { header: 1 }) as any[];
+  const onlyChapterSectionData = extractChapterSectionData(data);
+  const isSaved = await saveChapterSectionData(
+      onlyChapterSectionData,
+      lectureId
+  );
+  return isSaved;
+  }
+```
 
 ## More
 

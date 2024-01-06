@@ -89,6 +89,10 @@ function Main() {
     },
   ];
 
+  function add(a: number, b: number) {
+    return a + b;
+  }
+
   return (
     <div>
       <div className="w-full">

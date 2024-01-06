@@ -62,6 +62,29 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 <br />
 
+### 3. Jest
+
+```
+import '@testing-library/jest-dom'
+import { render, screen } from '@testing-library/react'
+import Page from '../app/page'
+
+describe('Page', () => {
+  it('renders a heading', () => {
+    render(<Page />)
+
+    const heading = screen.getByRole('heading', { level: 1 })
+
+    expect(heading).toBeInTheDocument()
+  })
+})
+
+```
+
+- 모킹: Jest를 사용하여 API 호출이나 외부 라이브러리와 같은 종속성을 쉽게 모킹하여 테스트를 고립시킨다
+- 테스트 커버리지: Jest는 테스트가 커버하는 코드의 일부를 보여주는 커버리지 보고서 생성. Jest 구성에 "coverage": true를 추가하여 활성화
+- 훅 및 설정: beforeEach 및 afterEach 훅을 사용하여 테스트 환경을 설정
+
 ## More
 
 - [블로그 정리 글](https://blog.naver.com/zhwltlr/223114102591)을 참고하세요

@@ -59,6 +59,8 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
     res.end()
   }
   ```
+  - vercel 배포시 `NEXTAUTH_URL` 지정을 해주어야만 한다.
+  - `NEXTAUTH_SECRET`도 마찬가지
 
 <br />
 

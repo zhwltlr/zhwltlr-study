@@ -5,6 +5,7 @@ import "split-pane-react/esm/themes/default.css";
 import "@/styles/globals.css";
 import { Inter as FontSans } from "next/font/google";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
 interface ITask {
   id: number;
@@ -80,7 +81,7 @@ export default function Home() {
             </div>
           ) : (
             <div className="h-full flex items-center justify-center bg-gray-300 text-black">
-              Select a task to see details
+              <Button>Select a task to see details</Button>
             </div>
           )}
         </div>

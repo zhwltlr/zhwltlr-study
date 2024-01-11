@@ -132,6 +132,108 @@ const [sizes, setSizes] = useState([30, 70]);
   }
 ```
 
+### shadcn
+
+```
+npx shadcn-ui@latest init
+```
+
+1. Import the font in the root layout:
+
+```
+import "@/styles/globals.css"
+import { Inter as FontSans } from "next/font/google"
+
+import { cn } from "../@/lib/utils"
+
+export const fontSans = FontSans({
+subsets: ["latin"],
+variable: "--font-sans",
+})
+
+export default function RootLayout({ children }: RootLayoutProps) {
+return (
+<html lang="en" suppressHydrationWarning>
+<head />
+<body
+className={cn(
+"min-h-screen bg-background font-sans antialiased",
+fontSans.variable
+)} >
+...
+</body>
+</html>
+)
+}
+```
+
+2. Configure theme.extend.fontFamily in tailwind.config.js
+
+```
+const { fontFamily } = require("tailwindcss/defaultTheme")
+
+/** @type {import('tailwindcss').Config} \*/
+module.exports = {
+darkMode: ["class"],
+content: ["app/**/_.{ts,tsx}", "components/\*\*/_.{ts,tsx}"],
+theme: {
+extend: {
+fontFamily: {
+sans: ["var(--font-sans)", ...fontFamily.sans],
+},
+},
+},
+}
+```
+
+App structure
+Here's how I structure my Next.js apps. You can use this as a reference:
+
+```
+├── app
+│ ├── layout.tsx
+│ └── page.tsx
+├── components
+│ ├── ui
+│ │ ├── alert-dialog.tsx
+│ │ ├── button.tsx
+│ │ ├── dropdown-menu.tsx
+│ │ └── ...
+│ ├── main-nav.tsx
+│ ├── page-header.tsx
+│ └── ...
+├── lib
+│ └── utils.ts
+├── styles
+│ └── globals.css
+├── next.config.js
+├── package.json
+├── postcss.config.js
+├── tailwind.config.js
+└── tsconfig.json
+```
+
+The rest of the components such as <PageHeader /> and <MainNav /> are placed in the components folder.
+The lib folder contains all the utility functions. I have a utils.ts where I define the cn helper.
+The styles folder contains the global CSS.
+That's it
+You can now start adding components to your project.
+
+npx shadcn-ui@latest add button
+Copy
+The command above will add the Button component to your project. You can then import it like this:
+
+import { Button } from "@/components/ui/button"
+
+export default function Home() {
+return (
+
+<div>
+<Button>Click me</Button>
+</div>
+)
+}
+
 ## More
 
 - [블로그 정리 글](https://blog.naver.com/zhwltlr/223170222235) - React split-pane-react

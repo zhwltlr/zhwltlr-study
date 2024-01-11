@@ -2,12 +2,20 @@
 import { useEffect, useState } from "react";
 import SplitPane, { Pane, SashContent } from "split-pane-react";
 import "split-pane-react/esm/themes/default.css";
+import "@/styles/globals.css";
+import { Inter as FontSans } from "next/font/google";
+import { cn } from "@/lib/utils";
 
 interface ITask {
   id: number;
   title: string;
   description: string;
 }
+
+export const fontSans = FontSans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
 
 export default function Home() {
   const [selectedTask, setSelectedTask] = useState<ITask | null>(null);
@@ -26,7 +34,12 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="h-screen">
+    <div
+      className={cn(
+        "min-h-screen bg-background h-screen font-sans antialiased",
+        fontSans.variable
+      )}
+    >
       <SplitPane
         split="vertical"
         sizes={sizes}

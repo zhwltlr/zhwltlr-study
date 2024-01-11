@@ -85,8 +85,6 @@ const [sizes, setSizes] = useState([30, 70]);
 
 <br />
 
-### shadcn/ui
-
 ### Tiptap
 
 - Tiptap은 ProseMirror를 기반으로 하는 WYSIWYG(What You See Is What You Get) 에디터를 쉽게 구현할 수 있게 해주는 라이브러리로, 여기서 말하는 ProseMirror는 풍부한 텍스트 에디팅을 제공하는 프레임워크이다.Tiptap은 ProseMirror를 Vue.js와 React와 같은 프레임워크에 통합하기 위한 래퍼이다.
@@ -132,7 +130,7 @@ const [sizes, setSizes] = useState([30, 70]);
   }
 ```
 
-### shadcn
+### shadcn/ui
 
 ```
 npx shadcn-ui@latest init
@@ -216,13 +214,12 @@ Here's how I structure my Next.js apps. You can use this as a reference:
 The rest of the components such as <PageHeader /> and <MainNav /> are placed in the components folder.
 The lib folder contains all the utility functions. I have a utils.ts where I define the cn helper.
 The styles folder contains the global CSS.
-That's it
-You can now start adding components to your project.
 
+```
 npx shadcn-ui@latest add button
-Copy
-The command above will add the Button component to your project. You can then import it like this:
+```
 
+```
 import { Button } from "@/components/ui/button"
 
 export default function Home() {
@@ -233,6 +230,7 @@ return (
 </div>
 )
 }
+```
 
 ## More
 
